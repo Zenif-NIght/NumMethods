@@ -36,7 +36,10 @@ def height(t):
     elif 15 <= t and t < 33:
         h =  1036 + 130.909*(t - 15) +  6.18425*(t - 15)**2 - 0.428*(t - 15)**3  
     elif t >= 33:
-        h =  2900262.468*(t -33)-16.9274*(t -33)**2 + 0.41796*(t -33)**3 
+        h =  2900 - 62.468*(t -33) - 16.9274*(t -33)**2 + 0.41796*(t -33)**3 
+        if  ( - 62.468 - 2*16.9274*(t-33) + 3*0.41796*(t-33)**2) >= 0:
+            #if the derivitve >0 the rocket is landed
+            h = 0
     else:
         # Check Error
         print( "Wow,We dont know what happend to your rocket, but some how the value t:" + str(t) + " got you here! ¯\\_(ツ)_/¯ " )         
@@ -75,12 +78,12 @@ def height(t):
 if __name__ == '__main__':
     
     # test to see if the Rock code works
-    x_max = 10000
-    skipBy = 100
+    x_max = 100
+    skipBy = 1
 
     # set up empty lists
-    x_list = [None] * (x_max-1)
-    y_list = [None] * (x_max-1)
+    x_list = [None] * (x_max)
+    y_list = [None] * (x_max)
     for i in range(0,len(x_list)):
         
         x_list[i] = i*skipBy
