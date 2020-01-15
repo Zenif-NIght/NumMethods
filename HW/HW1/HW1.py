@@ -51,24 +51,29 @@ def height(t):
     return h
 
 #################################
-# 3.a)  The following infinite series can be used to approximateex:
-#  e**x= 1 + x + (x**2)/2!+(x**3)/3!+···+(x**n)/n
-# !+···
+'''
+ 3.a)  The following infinite series can be used to approximateex:
+  e**x= 1 + x + (x**2)/2!+(x**3)/3!+···+(x**n)/n !+···
+ (i) Prove that this Maclaurin series expansion is a special case of the Taylor series expansion
+    (Eq. (4.7)in text) with xi =0 and h=x.
+Taylor: f(xi )= f(xi)+f'(xi)h + (f''(xi)h**2)/2! + (f'3'(xi)h**3)/3! + ... + (f'n'(xi)h**n)/n! + R
+Maclaurin:   e**x= 1 + x + (x**2)/2!+(x**3)/3!+···+(x**n)/n !+···
 
-# (i) Prove that this Maclaurin series expansion is a special case of the Taylor series expansion
-#    (Eq. (4.7)in text) with xi =0 and h=x.
+ e**x= e**xi +e**xi h + (e**xi *h**2)/2! + (e**xi* h**3)/3! + ... + (f'n'(xi)h**n)/n! + R
+
+ e**0= e**0 +e**0 h + (e**0 h**2)/2! + (e**0 *h**3)/3! + ... + (f'n'(xi)h**n)/n! + R
+
+ 1 = 1 + 1 h + (1 h**2)/2! + (1 *h**3)/3! + ... + ((1)h**n)/n! + R
 
 
-
-# (ii) Use a Taylor series to estimate f(x) = e−x at xi+1 = 2 for xi = 1.5. 
-#   Employ the zero-,
-#               first-, 
-#               second-, 
-#               and third-order
-#        versions and compute |εt| for each case.
-
-# 3.b) 
-
+ (ii) Use a Taylor series to estimate f(x) = e−x at xi+1 = 2 for xi = 1.5. 
+   Employ the zero-,
+               first-, 
+               second-, 
+               and third-order
+        versions and compute |εt| for each case.
+ 3.b) 
+'''
 
 
 
