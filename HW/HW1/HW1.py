@@ -83,9 +83,16 @@ pluging into Taylor series we find:
         h= x[i+1]-xi = L = 2 - 1.5
 
 f(xi )= f(xi)+f'(xi)h + (f''(xi)h**2)/2! + (f'3'(xi)h**3)/3! 
+zero-order
 e**(−x)= e**(−x)
-e**(−x)= e**(−x)-e**(−x).5  
+
+first-order
+e**(−x)= e**(−x)-e**(−x).5 
+
+second-order
 e**(−x)= e**(−x)-e**(−x).5 + (e**(−x)*.5**2)/2! 
+
+third-order
 e**(−x)= e**(−x)-e**(−x).5 + (e**(−x)*.5**2)/2! - (e**(−x)*.5**3)/3! 
 
 '''
@@ -139,3 +146,7 @@ if __name__ == '__main__':
         print(identifier)
         exit(-1)
     print(" Finished with part 2")
+
+
+
+ 
