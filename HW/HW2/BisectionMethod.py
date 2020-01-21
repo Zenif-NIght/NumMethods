@@ -41,7 +41,7 @@ def Bisect(function,xl, xu, es, imax):
             ea = 0
 
     x = xr
-    print("x"+str(x)+ "is the root approx")
+    print("x: "+str(x)+ "is the root approx")
     return x
 
 

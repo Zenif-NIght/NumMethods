@@ -16,8 +16,10 @@ read and understand, in your chosen programming language, and which you have wri
 '''
 ## use pip3 to install
 import numpy as np
-import matplotlib.pyplot as plt
-import BisectionMethod as bm
+import matplotlib.pyplot as plt 
+import BisectionMethod
+import FalsePosition
+
 
 def graph(formula, x_arange):  
     # https://stackoverflow.com/a/14000664
@@ -36,12 +38,20 @@ def fun1(x):
 
 def prob1():
     # (a) Graphically.
-    # graph(" (x**5) - 10*(x**4) + 46*(x**3) - 90*(x**2) + 85*x - 31",np.arange(0.5,1,0.0001))
+    graph(" (x**5) - 10*(x**4) + 46*(x**3) - 90*(x**2) + 85*x - 31",np.arange(0.5,1,0.0001))
     
     
     # (b) Using the bisection method to determine the root with εs = 10%. Employ the initial guesses of xl = 0.5 and xu = 1.0.
     xl, xu, es, imax = 0.001, 1.0, 0.001, 15
-    xIntersect_1B = bm.Bisect(fun1,xl, xu, es, imax)
+    xIntersect_1B = BisectionMethod.Bisect(fun1,xl, xu, es, imax)
+    # 0.881923614501953 was the root approximation
+
+    # (c) Perform the same computation 
+    # as in (b) but use the false position 
+    # method and εs = 0.2%.
+    xIntersect_1C = FalsePosition.FalsePos(fun1,xl, xu, es, imax)
+    
+
     return
 
 
