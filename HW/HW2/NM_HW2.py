@@ -16,9 +16,11 @@ read and understand, in your chosen programming language, and which you have wri
 '''
 ## use pip3 to install
 import numpy as np
+import math
 import matplotlib.pyplot as plt 
 import BisectionMethod
 import FalsePosition
+import NewtonRaphson
 
 
 def graph(formula, x_arange):  
@@ -89,19 +91,62 @@ def prob2():
 
     # (c) Perform the same computation as in (b) but using the false 
     # position method.
-    xl = -5
-    xu = -0.5
+    xl = -0.5
+    xu =-0.3
     es = 0.002
-    x1_intersept_C = FalsePosition.FalsePos(fun1,xl, xu, es, imax)
+    x1_intersept_C = FalsePosition.FalsePos(fun2,xl, xu, es, imax)
+    # -0.4160760388199209
     return
 
 
 # 3. Textbook problem 5.13.
+# The velocity y of a falling parachutist is given by
+'''
+v = ((g*m)/c)*(1-e^(-(c/m)t) )
+where g = 9.81. For a parachutist with a drag coeffi cient
+c = 15 kg/s, compute the mass m so that the velocity is y = 36 m/s
+at t = 10 s. Use the false-position method to determine m to a level
+of es = 0.1%.
+'''
+def fun3(m):
+    # return the mass
+    g = 9.81
+    c = 15
+    t = 10
+    # v = 36
+    return  ((g*m)/c)*(1-math.exp(-(c/m)*t)) -36
 
-# 4. Determine the real roots of f(x) = 0.5x3 − 4x2 + 8x − 1 
+def prob3():
+
+    imax = 15
+    xLower = 20
+    xUpper = 100
+    es = 0.01
+    x1_intersept = FalsePosition.FalsePos(fun3,xLower, xUpper, es, imax)
+    # 59.95967357510667
+
+# 4. Determine the real roots of f(x) = 0.5*(x**3) − 4*(x**2) + 8*x − 1 
 # (a) Graphically.
 # (b) Using the Newton-Raphson method to within εs = 0.01%.
 
+def fun4(x):
+    return  0.5*(x**3) - 4*(x**2) + 8*x - 1 
+def fun4Der(x):
+    return 3*0.5*(x**2) - 2*4*(x) + 8 
+
+def prob4():
+    # (a) Graphically.
+    graph(fun4,np.arange(0.0,5,0.01))
+    # 0.1337
+    
+    # (b) Using the Newton-Raphson method to within εs = 0.01%.
+    XGuess = 0
+    imax = 15
+    errorThresh = 0.01/100
+    NewtonRaphson.newtRap(fun4,fun4Der,XGuess,errorThresh,imax)
+    # 0.1338017374909775
+
+    
 # 5. Determine all roots of f(x) = −3x3 + 20x2 − 20x − 12
 # (a) Using the Secant method to a value of εs corresponding to three significant figures.
 
@@ -110,4 +155,9 @@ def prob2():
 if __name__ == '__main__':
     # prob1()
 
-    prob2()
+    # prob2()
+
+    # prob3()
+
+    prob4()
+    

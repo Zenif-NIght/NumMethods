@@ -1,16 +1,21 @@
-def Bisect(function,xl, xu, es, imax):
+def Bisect(function,xLower, xUpper, es, imax):
     # Bisection method to finds a root of a funtion.
-    # xl: lower bound guess.
-    # xu: upper bound guess.
+    # xLower: lower bound guess.
+    # xUpper: upper bound guess.
     # es: error threshold.
     # imax: max iterations threshold.
     iter =0
-    xr = xl
+    xr = xLower
     ea = es
     xr_old = xr
 
-    if (function(xl) * function(xu) >= 0): 
-        print("You have not assumed right xl:"+str(xl)+" and xu:"+str(xl)+"\n") 
+    if (function(xLower) * function(xUpper) >= 0): 
+        if function(xLower) == 0:
+            return (xLower)
+        elif function(xUpper) == 0:
+            return (xUpper)
+        
+        print("You piced the Worng Vales xLower:"+str(xLower)+" and xUpper:"+str(xLower)+"\n") 
         return
 
 
@@ -19,7 +24,7 @@ def Bisect(function,xl, xu, es, imax):
         
         # this is the only change is you want to do the false position method 
         #  change xr = () 
-        xr = (xl + xu)/2 # bisection method
+        xr = (xLower + xUpper)/2 # bisection method
         iter +=1
 
         if xr != 0 :
@@ -30,13 +35,13 @@ def Bisect(function,xl, xu, es, imax):
             return None 
 
 
-        test = function(xl) * function(xr)
+        test = function(xLower) * function(xr)
         if test <0:
             # id the value is negative then the root is to the left
-            xu = xr
+            xUpper = xr
         elif  test >0:
             # the vale is positive and the root is to the right
-            xl = xr
+            xLower = xr
         else:
             ea = 0
 
