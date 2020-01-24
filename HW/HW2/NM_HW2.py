@@ -21,6 +21,7 @@ import matplotlib.pyplot as plt
 import BisectionMethod
 import FalsePosition
 import NewtonRaphson
+import SecantMethod
 
 
 def graph(formula, x_arange):  
@@ -147,17 +148,32 @@ def prob4():
     # 0.1338017374909775
 
     
-# 5. Determine all roots of f(x) = −3x3 + 20x2 − 20x − 12
+# 5. Determine all roots of f(x) = -3(x**3) + 20*(x**2) - 20*x - 12
 # (a) Using the Secant method to a value of εs corresponding to three significant figures.
 
+def fun5(x):
+    return -3*(x**3) + 20*(x**2) - 20*x - 12
 
+def prob5():
+    # Graphically
+    graph(fun5,np.arange(-1,6,0.1))
+    # x1_intersept = - 0.415
+    
+    xLower = -1
+    xUpper = 0
+    es = 0.02
+    imax =  15
+    SecantMethod.Secant(fun5,xLower,xUpper,es,imax)
+    # -0.41607607486655435
+    return
 
 if __name__ == '__main__':
-    # prob1()
+    prob1()
 
-    # prob2()
+    prob2()
 
-    # prob3()
+    prob3()
 
     prob4()
     
+    prob5()
