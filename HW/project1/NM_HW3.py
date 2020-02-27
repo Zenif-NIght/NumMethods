@@ -3,6 +3,7 @@
 #  Numerical Methods
 #  Spring 2020
 import numpy as np
+import math
 
 '''
 Homework 3 is dueonlinethrough Canvas in PDF format by 11:59PM on Friday February 7.You are required to submit
@@ -48,7 +49,6 @@ def substitute(a, b):
             # sum = sum + aCopy[i][j]*x[j]
             aCopy[j][n] -= aCopy[j][i] *x[i]
             
-        
     return x
 
 
@@ -113,12 +113,14 @@ def guss2(a, b):
     if abs(a[n][n]/s[n]) < 0:
         er = -1
     print(np.matrix(a))
-    print(np.matrix(b))
+    print("Coefficients: " + str(np.matrix(b)))
     # Elimination
     if er != -1:
         
         #Substitute:
-        return substitute(a,b)  
+        vals = substitute(a,b)
+        print("Solution Values: "+ str(vals))
+        return vals 
         
 
 
@@ -154,24 +156,10 @@ def guss2(a, b):
 
 if __name__ == "__main__":
 
-    A1 =[[10,  2, -1,   27],
-        [ -3, -6,  2,-61.5],
-        [1,    1,  5,-21.5]]
+    A1 =[[1,  1, 10],
+        [math.exp(3) , math.exp(-3),  90]]
 
-    bConsts1 = [27,-61.5,-21.5]
-    # Gauss(A1,bConsts1)
+    bConsts1 = [10,90]
+
     guss2(A1,bConsts1)
-    exit(0)
-#     x1+ 2*x2 -1*x3= 2
-#   5*x1+ 2*x2 +2*x3= 9
-#  −3*x1+ 5*x2 −1*x3= 1,
-    A2 =[[1, 2, -1],
-        [5, 2,5],
-        [-1,5,-1]]
 
-    bConsts2 = [2,9,1]
-    print(np.matrix(A2))
-    print(A2[0])
-    print(len(A2))
-    # print(A2[2][1])
-    gauss(A2,bConsts2)#Gauss(A2,bConsts)
