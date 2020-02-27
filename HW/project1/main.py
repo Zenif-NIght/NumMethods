@@ -73,7 +73,6 @@ T10=T(10)=100oC,
     Provide the system of 9 equations you have derived.
 '''
 
-
 '''
 (e) Use one of the numerical algorithms you developed for homework 3 
     (Gauss elimination or LU decomposition) to solve the system derived 
