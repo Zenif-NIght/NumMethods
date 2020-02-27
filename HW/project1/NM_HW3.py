@@ -37,21 +37,27 @@ Homework 3 is dueonlinethrough Canvas in PDF format by 11:59PM on Friday Februar
 TOLERANCE = 0.0001
 
 def substitute(a, b):
-    n = len(a)-1
-    x = [None]*(n+1)
-    x[n] = b[n]/a[n][n]
+    n = len(a)
+    aCopy = a[:]
+    x = [None]*(n)
+    # x[n] = b[n]/aCopy[n][n]
     for i in range(n-1,-1,-1):
-        sum = b[i]
-        for j in range( i+1,n-1,-1 ):
-            sum = sum + a[i][j]*x[j]
-
-        x[i] = (b[i]-sum)/a[i][i]
+        # sum = b[i]
+        x[i] =aCopy[i][n]/aCopy[i][i]
+        for j in range( i-1,-1,-1 ):
+            # sum = sum + aCopy[i][j]*x[j]
+            aCopy[j][n] -= aCopy[j][i] *x[i]
+            
+        
     return x
 
 
 
 def guss2(a, b):
+    print(np.matrix(a))
+    print("Solution:...")
     n = len(a)-1
+    m = len(a[1])-1
     er = 0
 
     # get the Max val in each row
@@ -66,6 +72,7 @@ def guss2(a, b):
     
     #Elimination:
     for k in range(0,n+1):
+        # print("k:" +str(k))
         #Pivot:
         p = k
         big = abs(a[k][k]/s[k])
@@ -95,17 +102,18 @@ def guss2(a, b):
             break #EXIT FOR
         
         for i in range(k+1,n+1):
-            factor = a[i][k]/a[k][k]
-            for j in range (k,n+1):
-                print( a[i][j]-factor*a[k][j])
-                a[i][j] = a[i][j]-factor*a[k][j]
-            
-            b[i] = b[i]-factor*b[k]
-        
-    
+
+            factor =- a[i][k]/a[k][k]
+            for j in range (k,m+1):
+
+                a[i][j] = a[i][j]+factor*a[k][j]
+
+            b[i] = b[i]+factor*b[k]
+
     if abs(a[n][n]/s[n]) < 0:
         er = -1
-    
+    print(np.matrix(a))
+    print(np.matrix(b))
     # Elimination
     if er != -1:
         
@@ -146,13 +154,13 @@ def guss2(a, b):
 
 if __name__ == "__main__":
 
-    A1 =[[10, 2, -1],
-        [-3, -6,2],
-        [1,1,5]]
+    A1 =[[10,  2, -1,   27],
+        [ -3, -6,  2,-61.5],
+        [1,    1,  5,-21.5]]
 
     bConsts1 = [27,-61.5,-21.5]
     # Gauss(A1,bConsts1)
-    print(np.matrix(guss2(A1,bConsts1)))
+    guss2(A1,bConsts1)
     exit(0)
 #     x1+ 2*x2 -1*x3= 2
 #   5*x1+ 2*x2 +2*x3= 9
