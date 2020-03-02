@@ -102,9 +102,19 @@ T10=T(10)=100oC,
     the value for |Ea| is input by the user. You may gain insight by 
     comparing this approach to a discussion regarding the bisection 
     method on page 132 of the textbook. Test your algorithm by applying
-    it to find the minimum of f(x) = 2x+ 6 with initial guesses xl = 1 
-    and xu = 5 and x desired absolute error |Ea| = 0.00001.
+    it to find the minimum of f(x) = 2x+ (6/x) with initial guesses xl = 1 
+    and xu = 5 and desired absolute error |Ea| = 0.00001.
 '''
+
+import goldenSearch as gs
+def function1(x):
+    return 2*x +(6/x)
+    
+xl = 1
+xu =5
+tol = 0.00001
+gs.goldenSearch(function1,xl,xu,tol)
+
 
 '''
 3. Given f(x,y)=2xy+2y−1.5x2−2y2,
