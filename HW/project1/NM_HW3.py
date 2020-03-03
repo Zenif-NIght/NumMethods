@@ -158,7 +158,7 @@ if __name__ == "__main__":
 
     A1 =[[1,  1, 10],
         [math.exp(3) , math.exp(-3),  90]]
-
+    print(np.matrix(A1))
     bConsts1 = [10,90]
 
     guss2(A1,bConsts1)

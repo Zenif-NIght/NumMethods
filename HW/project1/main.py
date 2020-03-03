@@ -1,4 +1,4 @@
-
+import numpy as np
 '''
 1. Linear algebraic equations can arise in the solution 
     of differential equations. For example, the following heat 
@@ -73,6 +73,20 @@ T10=T(10)=100oC,
     Provide the system of 9 equations you have derived.
 '''
 
+
+bigArray =[ [  1. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,  20. ],
+            [  1. ,  -2.3,   1. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,  -3. ],
+            [  0. ,   1. ,  -2.3,   1. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,  -3. ],
+            [  0. ,   0. ,   1. ,  -2.3,   1. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,  -3. ],
+            [  0. ,   0. ,   0. ,   1. ,  -2.3,   1. ,   0. ,   0. ,   0. ,   0. ,   0. ,  -3. ],
+            [  0. ,   0. ,   0. ,   0. ,   1. ,  -2.3,   1. ,   0. ,   0. ,   0. ,   0. ,  -3. ],
+            [  0. ,   0. ,   0. ,   0. ,   0. ,   1. ,  -2.3,   1. ,   0. ,   0. ,   0. ,  -3. ],
+            [  0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   1. ,  -2.3,   1. ,   0. ,   0. ,  -3. ],
+            [  0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   1. ,  -2.3,   1. ,   0. ,  -3. ],
+            [  0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   1. ,  -2.3,   1. ,  -3. ],
+            [  0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   0. ,   1. , 100. ]]
+print( np.matrix(bigArray))
+
 '''
 (e) Use one of the numerical algorithms you developed for homework 3 
     (Gauss elimination or LU decomposition) to solve the system derived 
@@ -80,6 +94,36 @@ T10=T(10)=100oC,
     to the analytic solution that you obtained in 1(c) through depicting 
     the two solutions on plots over the interval 0 ≤ x ≤ 10.
 '''
+import NM_HW3 as hw
+consts =[20,-3,-3,-3,-3,-3,-3,-3,-3,-3,100]
+print( np.matrix(consts))
+solutions = hw.guss2(bigArray,consts)
+import math
+def Temp(x):
+    A=10
+    B=4.467121520
+    C=5.532878481
+    λ=math.sqrt(0.3)
+    return A+B*math.exp(λ*x) +C*math.exp(-λ*x)
+solutions2 = [None]*11
+for i in range(0,11):
+    solutions2[i] = Temp(i) 
+
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+# xVals = range(0,11)
+print('Solution1.D:',solutions)
+print('Solution1.C:',solutions2)
+orange_patch = mpatches.Patch(color='orange', label='The 1.C Data')
+blue_patch = mpatches.Patch(color='blue', label='The 1.D Data')
+plt.legend(handles=[orange_patch,blue_patch])
+plt.plot(solutions)
+plt.plot(solutions2)
+plt.ylabel('Temp')
+plt.xlabel('Distance')
+plt.show()
+
+exit(0)
 
 '''
 (f) Write a function that takes as input the number of interior nodes
@@ -109,7 +153,7 @@ T10=T(10)=100oC,
 import goldenSearch as gs
 def function1(x):
     return 2*x +(6/x)
-    
+
 xl = 1
 xu =5
 tol = 0.00001

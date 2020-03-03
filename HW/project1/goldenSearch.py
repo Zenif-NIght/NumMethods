@@ -12,7 +12,12 @@ def goldenSearch(function,xl, xu,tol):
     f2 = function(x2)
 
     iter = 0
-    while (abs(xu - xl) > tol):
+    deltaX = abs(xu - xl)
+    Ead = tol
+    numIteration = int(math.log2(deltaX/Ead))
+
+    # while (abs(xu - xl) > tol):
+    while( iter <= numIteration):
         iter = iter + 1
 
         if (f2 > f1):
