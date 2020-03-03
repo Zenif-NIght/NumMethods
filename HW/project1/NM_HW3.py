@@ -107,8 +107,8 @@ def guss2(a, b):
             for j in range (k,m+1):
 
                 a[i][j] = a[i][j]+factor*a[k][j]
-
-            b[i] = b[i]+factor*b[k]
+            if i < len(b):
+                b[i] = b[i]+factor*b[k]
 
     if abs(a[n][n]/s[n]) < 0:
         er = -1

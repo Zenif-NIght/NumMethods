@@ -112,18 +112,17 @@ for i in range(0,11):
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 # xVals = range(0,11)
-print('Solution1.D:',solutions)
-print('Solution1.C:',solutions2)
-orange_patch = mpatches.Patch(color='orange', label='The 1.C Data')
-blue_patch = mpatches.Patch(color='blue', label='The 1.D Data')
-plt.legend(handles=[orange_patch,blue_patch])
-plt.plot(solutions)
-plt.plot(solutions2)
-plt.ylabel('Temp')
-plt.xlabel('Distance')
-plt.show()
+# print('Solution1.D:',solutions)
+# print('Solution1.C:',solutions2)
+# orange_patch = mpatches.Patch(color='orange', label='The 1.C Data')
+# blue_patch = mpatches.Patch(color='blue', label='The 1.D Data')
+# plt.legend(handles=[orange_patch,blue_patch])
+# plt.plot(solutions)
+# plt.plot(solutions2)
+# plt.ylabel('Temp')
+# plt.xlabel('Distance')
+# # plt.show()
 
-exit(0)
 
 '''
 (f) Write a function that takes as input the number of interior nodes
@@ -131,6 +130,88 @@ exit(0)
     and outputs the numerical solution to (1) in the form of the interior 
     node values T1 = T(∆x), T2 = T(2∆x),..., Tn = T(n∆x).
 '''
+
+def n_TempSolution(n,lengthOfRod):
+    # deltaX = lengthOfRod/(n+1)
+    # m= n+2
+    # solutionMat = [ [[0] * m for i in range(n+2)]]
+    deltaX = lengthOfRod/(n+1)
+    m= n+2
+    solutionMat =  [[0] * m for i in range(n+2)]
+    consts = [None]*(n+2)
+    # Rows
+    for i in range(1,n+1):
+        # Colloms
+        for j in range(0,m):
+            if i==j:
+                solutionMat[i][j]= (-2/(deltaX**2) -.3)
+            elif i+1 == j or i-1==j:
+                solutionMat[i][j]=1/(deltaX**2)
+            else:
+                solutionMat[i][j]= 0
+        solutionMat[i][m-1] = (-3)
+        consts[i] = (-3)
+
+    
+    solutionMat[0][0] = 1
+    solutionMat[0][m-1] = 20
+    consts[0] = 20
+    solutionMat[n+1][m-2] =1
+    solutionMat[n+1][m-1] = 100
+    consts[n+1] = 100
+
+    print( np.matrix(solutionMat)) 
+    print( np.matrix(consts))
+    solutions = hw.guss2(bigArray,consts)
+    return solutions
+
+lengthOfRod = 10
+val = 1
+solutions2 = [None]*(val+2) 
+for i in range(0,val+2):
+    solutions2[i] = Temp(i) 
+
+solutionG_1=n_TempSolution(1,lengthOfRod)
+plt.plot(solutionG_1,)
+plt.plot(solutions2)
+plt.ylabel('Temp')
+plt.xlabel('Distance')
+plt.show()
+
+val = 4
+solutions2 = [None]*(val+2) 
+for i in range(0,val+2):
+    solutions2[i] = Temp(i) 
+solutionG_4=n_TempSolution(4,lengthOfRod)
+plt.plot(solutionG_4,)
+plt.plot(solutions2)
+plt.ylabel('Temp')
+plt.xlabel('Distance')
+plt.show()
+
+val = 9
+solutions2 = [None]*(val+2) 
+for i in range(0,val+2):
+    solutions2[i] = Temp(i) 
+solutionG_9=n_TempSolution(9,lengthOfRod)
+plt.plot(solutionG_9,)
+plt.plot(solutions2)
+plt.ylabel('Temp')
+plt.xlabel('Distance')
+plt.show()
+
+val = 19
+solutions2 = [None]*(val+2) 
+for i in range(0,val+2):
+    solutions2[i] = Temp(i) 
+solutionG_19=n_TempSolution(19,lengthOfRod)
+plt.plot(solutionG_19,)
+plt.plot(solutions2)
+plt.ylabel('Temp')
+plt.xlabel('Distance')
+plt.show()
+
+exit(0)
 '''
 (g) Produce and submit 4 plots that compare your analytic solution 
     to (1) derived in question 2(b) to the numerical solution generated 
