@@ -43,7 +43,7 @@ def prob3(x,y):
         r += zx*zy
 
 
-    e =(e/n)**0.5# square Root
+    e =(e/(n-2))**0.5# square Root
     print("Standard Error: ",e)
 
     r = r/(n)
@@ -94,9 +94,9 @@ if __name__ == "__main__":
     x = [ 0.0, 2.0, 4.0, 6.0, 9.0, 11.0, 12.0, 15.0, 17.0, 19.0]
     y = [ 5.0, 6.0, 7.0, 6.0, 9.0,  8.0,  7.0, 10.0, 12.0, 12.0] 
 
-    # prob3(x,y)
+    prob3(x,y)
 
     numofConst =3
     x = [1  , 2  , 3  , 4  , 5  ]
     y = [2.2, 2.8, 3.6, 4.5, 5.5]
-    prob4(x,y,numofConst)
+    # prob4(x,y,numofConst)
