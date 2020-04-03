@@ -76,6 +76,7 @@ def prob4(x,y,numofConst):
 
     for i in range(len(x)):
         z[i]= [1, i+1,1/(i+1)]
+
     y = np.matrix(y).transpose()
     print(y)
     z = np.matrix(z)
