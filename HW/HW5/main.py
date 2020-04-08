@@ -15,7 +15,7 @@ def testBound(a,b):
         exit(-1)
 
 def trapezoidal(a,b,n,funct):
-    print("starting trapezoidal")
+    # print("starting trapezoidal")
     if n== 0:
         return 0
     testBound(a,b)
@@ -106,13 +106,13 @@ def qstep(a,b,funct,tolError,fa, fc, fb):
 
     return I
 
-def adaptiveQuadrature(a,b,funct):
+def adaptiveQuadrature(a,b,funct,tolerence):
     testBound(a,b)
     fa = funct(a)
     fb = funct(b)
     c = (a+b)/2
     fc = funct(c)
-    qstep(a,b,funct,0.000001, fa, fc, fb)
+    return qstep(a,b,funct,tolerence, fa, fc, fb)
 
 
 def func1(x):
@@ -121,10 +121,11 @@ def func1(x):
 
 if __name__ == "__main__":
     print("Starting Application...")
-    # prob2Algorithm(0,1,3,func1)
+
     n_max = 100 
     y_errorTrap = [None]*n_max
     y_errorSim = [None]*n_max
+
     x_nVals = [None]*n_max
 
     TrueVal = 0.602298
@@ -133,6 +134,7 @@ if __name__ == "__main__":
         if n == 0:
            y_errorTrap[n] =0
            y_errorSim[n] =0 
+
            continue
         x_nVals[n] = n
 
@@ -142,17 +144,27 @@ if __name__ == "__main__":
         # test Prob 2
         y_errorSim[n] = TrueVal- prob2Algorithm(0,1,n,func1)
         
-    # test Prob 3
-    adaptiveQuadrature(0,1,func1)
+    jMax =1000
+    y_errorAdpt = [None]*jMax
+    x_tolAdpt =  [None]*jMax
+    for i in np.arange(0.001,.2,(1/jMax)):
+        # test Prob 3
+        j = int(i *jMax)
+        x_tolAdpt[j] = i
+        y_errorAdpt[j] = TrueVal- adaptiveQuadrature(0,1,func1,x_tolAdpt[j])
     
     plt.plot(x_nVals, y_errorTrap,color='blue',label="Trapizodal Error")
     
     plt.plot(x_nVals, y_errorSim,color='green',label="Simpsons Error")
     plt.title("Trapizodal and Simpsons Error")
+    plt.ylabel('Difference Error')
+    plt.xlabel('\'n\' Interations')
     plt.legend()
     plt.show()
 
-    def fenfun(x):
-        return x**2
-    print(trapezoidal(0,1,100,fenfun))
-    
+    plt.plot(x_tolAdpt, y_errorAdpt,color='red',label="Adaptive Quadrature Error")
+    plt.title("Adaptive Quadrature Error")
+    plt.ylabel('Difference Error')
+    plt.xlabel(' Tolerance')
+    plt.legend()
+    plt.show()
