@@ -3,22 +3,41 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # # http://code.activestate.com/recipes/577647-ode-solver-using-euler-method/
-# # (xa, ya) are a know solution point
-# # from xa to xb
-# # n is the number of steps
-# def euler(f, xa, xb, ya, n):
-#     # step size
-#     step = (xb - xa) / float(n)
-#     # x inital
-#     x = xa
-#     # y intal
-#     yb = ya
-#     for i in range(n):
-#         yb += step * f(x)#f(x, yb)
-#         x += step
-#     return yb # this is the value at xb    
+# (xa, ya) are a know solution point
+# from xa to xb
+# n is the number of steps
+def euler(f, xa, xb, ya, n):
+    # step size
+    step = (xb - xa) / float(n)
+    # x inital
+    x = xa
+    # y intal
+    yb = ya
+    for i in range(n):
+        yb += step * f(x)#f(x, yb)
+        x += step
+    return yb # this is the value at xb
 
+# help from:
+#  https://github.com/twright/Python-Examples/blob/master/runge-kutta-method.py
 
+def runge_kutta(timei, y0, step,fun1):
+    y_current = y0
+    timeCer = timei
+    while  y_current > 0:
+        
+        vF1 = fun1(timeCer)
+
+        vF2 = fun1(timeCer + step/2)
+
+        vF3 = fun1(timeCer + step/2)
+
+        vF4 = fun1(timeCer + step)
+
+        y_current = y_current + (step/6)*(vF1 + 2*(vF2 + vF3) + vF4)
+        timeCer = timeCer + step
+
+    return timeCer
 
 def fallAccel(v):
     return 9.81 - 0.0025 * v**2
@@ -72,8 +91,8 @@ def rungeKuttaMethod(xi,yi,step):
     plt.ylabel("Velocity (m/s)",color ="red")
     plt.title("Position and Velocity Vs Time \"Runge Kutta Method\"")
     # plt.legend()
-    print(velosList[-1])
-    print("the object reaches Position: ",positionList[-2],"m  at the time: ",time[-2],"s")
+    print("Final Velocity: ",velosList[-1])
+    print("Runge Kutta Method: the object reaches Position: ",positionList[-2],"m  at the time: ",time[-2],"s")
     plt.show()
     return 
 
@@ -107,7 +126,7 @@ def eulerMethod (xi,yi,step):
     plt.title("Position and Velocity Vs Time \"Euler Method\"")
     # plt.legend()
     print("Final Velocity: ",velosList[-1])
-    print("the object reaches Position: ",positionList[-2],"m  at the time: ",time[-2],"s")
+    print("Euler Method: the object reaches Position: ",positionList[-2],"m  at the time: ",time[-2],"s")
     plt.show()
     return 
 
