@@ -17,11 +17,10 @@ def FalsePos(function,xLower, xUpper, es, imax):
             return (xUpper)
         
         print("You picked the Wrong Values xLower:f("+str(xLower)+") = "+ str(function(xLower))+" and xUpper: f("+str(xUpper)+") = "+ str(function(xUpper))+"\n") 
-        # return
-        # print("You have not assumed right xLower:"+str(xLower)+" and left xUpper:"+str(xUpper)+"\n") 
-        # xr = xUpper
-        # xUpper = xLower
-        # xLower = xr
+        print("or You have not assumed right xLower:"+str(xLower)+" and left xUpper:"+str(xUpper)+"\n") 
+        xr = xUpper
+        xUpper = xLower
+        xLower = xr
 
 
     while (ea >= es) and (iter < imax):
@@ -29,7 +28,7 @@ def FalsePos(function,xLower, xUpper, es, imax):
         # (a * func(b) - b * func(a))/ (func(b) - func(a)) 
         xr = (xUpper*function(xLower) - xLower *function(xUpper))/ (function(xLower)-function(xUpper))
         # xr = (xUpper*function(xLower)-xLower)/ (function(xLower)-function(xUpper))
-
+        print("Iteration:",iter," xr: ",xr)
         iter +=1
         if function(xr) == 0:
             return xr

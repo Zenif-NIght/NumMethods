@@ -1,4 +1,4 @@
-def Bisect(function,xLower, xUpper, es, imax):
+def Bisect(function,xLower, xUpper, Ead, imax):
     # Bisection method to finds a root of a funtion.
     # xLower: lower bound guess.
     # xUpper: upper bound guess.
@@ -6,7 +6,7 @@ def Bisect(function,xLower, xUpper, es, imax):
     # imax: max iterations threshold.
     iter =0
     xr = xLower
-    ea = es
+    ea = Ead
     xr_old = xr
 
     if (function(xLower) * function(xUpper) >= 0): 
@@ -19,14 +19,14 @@ def Bisect(function,xLower, xUpper, es, imax):
         return
 
 
-    while (ea >= es) and (iter < imax):
+    while (ea >= Ead) and (iter < imax):
         xr_old = xr_old
         
         # this is the only change is you want to do the false position method 
         #  change xr = () 
         xr = (xLower + xUpper)/2 # bisection method
+        print("Iteration:",iter," xr: ",xr)
         iter +=1
-
         if xr != 0 :
             ea = abs((xr- xr_old)/xr)*100
         else:
@@ -48,9 +48,5 @@ def Bisect(function,xLower, xUpper, es, imax):
     x = xr
     print("x: "+str(x)+ " is the root approx Bisection method")
     return x
-
-
-
-
 
 
