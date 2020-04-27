@@ -1,4 +1,4 @@
-def Bisect(function,xLower, xUpper, Ead, imax):
+def Bisect(function,xLower, xUpper, Ead, n):
     # Bisection method to finds a root of a funtion.
     # xLower: lower bound guess.
     # xUpper: upper bound guess.
@@ -15,11 +15,15 @@ def Bisect(function,xLower, xUpper, Ead, imax):
         elif function(xUpper) == 0:
             return (xUpper)
         
-        print("You piced the Worng Vales xLower:"+str(xLower)+" and xUpper:"+str(xLower)+"\n") 
+        print("You piced the Worng Vales xLower:"+str(xLower)+" and xUpper:"+str(xUpper)+"\n") 
+        temp = xLower
+        xLower = xUpper
+        xUpper = temp
+        
         return
 
 
-    while (ea >= Ead) and (iter < imax):
+    while (ea >= Ead) and (iter < n):
         xr_old = xr_old
         
         # this is the only change is you want to do the false position method 
